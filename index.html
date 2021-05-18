@@ -1,0 +1,58 @@
+<html>
+  <head>
+  </head>
+  <body>
+    
+    <script>
+
+      function reverseString(str) {
+
+        var result = '';
+
+        for (var i = 0; i < str.length; i++) {
+          result += str[str.length - i - 1];
+        }
+
+        return result;
+
+      }
+
+      function isCharPresent(str, char) {
+
+        var result = false;
+
+        for (var i = 0; i < str.length; i++) {
+          
+          if (str[i] === char) {
+            result = true;
+            break;
+          }
+        }
+
+        return result;
+
+      }
+
+      function charIndexOf(str, char) {
+
+        var result = -1;
+
+        for (var i = 0; i < str.length; i++) {
+          
+          if (str[i] === char) {
+            result = i;
+            break;
+          }
+        }
+
+        return result;
+
+      }
+
+      console.log(reverseString('pineapple'));
+      console.log(isCharPresent('pineapple', 'w'));
+      console.log(charIndexOf('pineapple', 'i'));
+
+    </script>
+  </body>
+</html>
