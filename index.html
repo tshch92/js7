@@ -5,53 +5,132 @@
     
     <script>
 
-      function reverseString(str) {
+      var rawArray = [
 
-        var result = '';
+        { 
+          app: 'telegram',
+          message: 'Some text message',
+          sender: 'Ivan Petrov',
+          date: '31/07/2019',
+        },
 
-        for (var i = 0; i < str.length; i++) {
-          result += str[str.length - i - 1];
-        }
+        { 
+          app: 'telegram',
+          message: 'Some text message',
+          sender: 'Maria Fedorova',
+          date: '31/07/2019',
+        },
 
-        return result;
+        { 
+          app: 'instagram',
+          message: 'Some text message',
+          sender: 'Ivan Petrov',
+          date: '31/07/2019',
+        },
 
-      }
+        { 
+          app: 'telegram',
+          message: 'Some text message',
+          sender: 'Ivan Petrov',
+          date: '31/07/2019',
+        },
 
-      function isCharPresent(str, char) {
+        { 
+          app: 'instagram',
+          message: 'Some text message',
+          sender: 'Maria Fedorova',
+          date: '31/07/2019',
+        },
 
-        var result = false;
+        { 
+          app: 'viber',
+          message: 'Some text message',
+          sender: 'John Doe',
+          date: '31/07/2019',
+        },
 
-        for (var i = 0; i < str.length; i++) {
-          
-          if (str[i] === char) {
-            result = true;
-            break;
+      ];
+
+      function sort(array, key) {
+
+        var uniqueSortValues = []; 
+
+        var result = [];
+
+        array.forEach(element => {
+
+          if (!uniqueSortValues.includes(element[key])) {
+
+            uniqueSortValues.push(element[key]);
+
+            result[element[key]] = [];
+
           }
-        }
 
-        return result;
-
-      }
-
-      function charIndexOf(str, char) {
-
-        var result = -1;
-
-        for (var i = 0; i < str.length; i++) {
+          result[element[key]].push(element);
+       
+        });
           
-          if (str[i] === char) {
-            result = i;
-            break;
-          }
-        }
-
         return result;
 
       }
 
-      console.log(reverseString('pineapple'));
-      console.log(isCharPresent('pineapple', 'w'));
-      console.log(charIndexOf('pineapple', 'i'));
+      function sort2(array, key1, key2) {
+
+        var result = []; 
+
+        var firstKeySort = sort(array, key1);
+
+        for (var k in firstKeySort) {
+
+          var uniqueSortValues = [];
+
+          firstKeySort[k].forEach(element => {
+
+            if (!uniqueSortValues.includes(element[key2])) {
+
+              uniqueSortValues.push(element[key2]);
+
+              result[k] = [];
+
+            }
+
+          });
+
+          for (var i = 0; i<uniqueSortValues.length; i++) {
+
+            var secondKeySort = [];
+
+            firstKeySort[k].forEach(element => {
+
+              if (element[key2] === (uniqueSortValues[i])) {
+
+                secondKeySort.push(element);
+
+              }
+
+            });
+
+            result[k].push(secondKeySort);
+            
+          };
+
+        }
+
+        // for (var item in firstKeySort) {
+
+        //   var res2 = sort(firstKeySort[item], key2);
+
+        //   result[item] = res2;
+
+        // }
+          
+        return result;
+
+      }
+      
+      //console.log(sort(rawArray, 'app'));
+      console.log(sort2(rawArray, 'app', 'sender'));
 
     </script>
   </body>
