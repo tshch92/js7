@@ -51,11 +51,87 @@
 
       ];
 
+      // var exampleArray = {
+
+      //   telegram: [
+
+      //     [
+
+      //       { 
+      //         app: 'telegram',
+      //         message: 'Some text message',
+      //         sender: 'Ivan Petrov',
+      //         date: '31/07/2019',
+      //       },
+
+      //       { 
+      //         app: 'telegram',
+      //         message: 'Some text message',
+      //         sender: 'Ivan Petrov',
+      //         date: '31/07/2019',
+      //       },
+
+      //     ],
+
+      //     [
+
+      //       { 
+      //         app: 'telegram',
+      //         message: 'Some text message',
+      //         sender: 'Maria Fedorova',
+      //         date: '31/07/2019',
+      //       },
+
+      //     ],
+
+      //   ],
+
+      //   instagram: [
+
+      //     [
+
+      //       { 
+      //         app: 'instagram',
+      //         message: 'Some text message',
+      //         sender: 'Ivan Petrov',
+      //         date: '31/07/2019',
+      //       },
+
+      //     ],
+
+      //     [
+
+      //       { 
+      //         app: 'instagram',
+      //         message: 'Some text message',
+      //         sender: 'Maria Fedorova',
+      //         date: '31/07/2019',
+      //       },
+
+      //     ]
+
+      //   ],
+
+      //   viber: [
+
+      //   [ 
+      //     { 
+      //       app: 'viber',
+      //       message: 'Some text message',
+      //       sender: 'John Doe',
+      //       date: '31/07/2019',
+      //     }, 
+      //   ],
+
+      //   ]
+
+      // };
+
       function sort(array, key) {
 
         var uniqueSortValues = []; 
 
-        var result = [];
+        var result = {};
 
         array.forEach(element => {
 
@@ -129,7 +205,11 @@
 
       }
       
-      //console.log(sort(rawArray, 'app'));
+
+      // console.log(exampleArray);
+      // console.log('-----------------');
+      console.log(sort(rawArray, 'app'));
+      console.log('-----------------');
       console.log(sort2(rawArray, 'app', 'sender'));
 
     </script>
