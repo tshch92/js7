@@ -5,212 +5,112 @@
     
     <script>
 
-      var rawArray = [
+        var templateArray = ['beer', 'wine', 'beer', 'cider', 'scotch', 'ale'];
 
-        { 
-          app: 'telegram',
-          message: 'Some text message',
-          sender: 'Ivan Petrov',
-          date: '31/07/2019',
-        },
+        var templateArray2 = [
+          { day: 'monday', drink: 'ale' },
+          { day: 'tuesday', drink: 'wine' },
+          { day: 'wednesday', drink: 'cider' },
+          { day: 'thursday', drink: 'beer' },
+          { day: 'friday', drink: 'ale' },
+        ];
 
-        { 
-          app: 'telegram',
-          message: 'Some text message',
-          sender: 'Maria Fedorova',
-          date: '31/07/2019',
-        },
-
-        { 
-          app: 'instagram',
-          message: 'Some text message',
-          sender: 'Ivan Petrov',
-          date: '31/07/2019',
-        },
-
-        { 
-          app: 'telegram',
-          message: 'Some text message',
-          sender: 'Ivan Petrov',
-          date: '31/07/2019',
-        },
-
-        { 
-          app: 'instagram',
-          message: 'Some text message',
-          sender: 'Maria Fedorova',
-          date: '31/07/2019',
-        },
-
-        { 
-          app: 'viber',
-          message: 'Some text message',
-          sender: 'John Doe',
-          date: '31/07/2019',
-        },
-
-      ];
-
-      // var exampleArray = {
-
-      //   telegram: [
-
-      //     [
-
-      //       { 
-      //         app: 'telegram',
-      //         message: 'Some text message',
-      //         sender: 'Ivan Petrov',
-      //         date: '31/07/2019',
-      //       },
-
-      //       { 
-      //         app: 'telegram',
-      //         message: 'Some text message',
-      //         sender: 'Ivan Petrov',
-      //         date: '31/07/2019',
-      //       },
-
-      //     ],
-
-      //     [
-
-      //       { 
-      //         app: 'telegram',
-      //         message: 'Some text message',
-      //         sender: 'Maria Fedorova',
-      //         date: '31/07/2019',
-      //       },
-
-      //     ],
-
-      //   ],
-
-      //   instagram: [
-
-      //     [
-
-      //       { 
-      //         app: 'instagram',
-      //         message: 'Some text message',
-      //         sender: 'Ivan Petrov',
-      //         date: '31/07/2019',
-      //       },
-
-      //     ],
-
-      //     [
-
-      //       { 
-      //         app: 'instagram',
-      //         message: 'Some text message',
-      //         sender: 'Maria Fedorova',
-      //         date: '31/07/2019',
-      //       },
-
-      //     ]
-
-      //   ],
-
-      //   viber: [
-
-      //   [ 
-      //     { 
-      //       app: 'viber',
-      //       message: 'Some text message',
-      //       sender: 'John Doe',
-      //       date: '31/07/2019',
-      //     }, 
-      //   ],
-
-      //   ]
-
-      // };
-
-      function sort(array, key) {
-
-        var uniqueSortValues = []; 
-
-        var result = {};
-
-        array.forEach(element => {
-
-          if (!uniqueSortValues.includes(element[key])) {
-
-            uniqueSortValues.push(element[key]);
-
-            result[element[key]] = [];
-
-          }
-
-          result[element[key]].push(element);
-       
-        });
-          
-        return result;
-
-      }
-
-      function sort2(array, key1, key2) {
-
-        var result = []; 
-
-        var firstKeySort = sort(array, key1);
-
-        for (var k in firstKeySort) {
-
-          var uniqueSortValues = [];
-
-          firstKeySort[k].forEach(element => {
-
-            if (!uniqueSortValues.includes(element[key2])) {
-
-              uniqueSortValues.push(element[key2]);
-
-              result[k] = [];
-
+        function indexOf(array, value, from = 0) {
+          for (var i in array) {
+            if (i >= from && array[i] === value) {
+              return i;
             }
-
-          });
-
-          for (var i = 0; i<uniqueSortValues.length; i++) {
-
-            var secondKeySort = [];
-
-            firstKeySort[k].forEach(element => {
-
-              if (element[key2] === (uniqueSortValues[i])) {
-
-                secondKeySort.push(element);
-
-              }
-
-            });
-
-            result[k].push(secondKeySort);
-            
           };
-
+          return -1;
         }
 
-        // for (var item in firstKeySort) {
+        function lastIndexOf(array, value, from = array.length-1) {
+          for (var i = array.length-1; i >= 0; i--) {
+            if (i <= from && array[i] === value) {
+              return i;
+            }
+          };
+          return -1;
+        }
 
-        //   var res2 = sort(firstKeySort[item], key2);
+        function includes(array, value, from = 0) {
+          for (var i in array) {
+            if ((i >= from) && array[i] === value) {
+              return true;
+            }
+          };
+          return false;
+        }
 
-        //   result[item] = res2;
+        function find(array, callback) {
+          for (var i in array) {
+            if (callback(array[i])) {
+              return array[i];
+            }
+          };
+        }
 
-        // }
-          
-        return result;
+        function findIndex(array, callback) {
+          for (var i in array) {
+            if (callback(array[i])) {
+              return i;
+            }
+          };
+          return -1;
+        }
 
-      }
-      
+        function some(array, callback) {
+          for (var i in array) {
+            if (callback(array[i])) {
+              return true;
+            }
+          };
+          return false;
+        }
 
-      // console.log(exampleArray);
-      // console.log('-----------------');
-      console.log(sort(rawArray, 'app'));
-      console.log('-----------------');
-      console.log(sort2(rawArray, 'app', 'sender'));
+        function every(array, callback) {
+          for (var i in array) {
+            if (!callback(array[i])) {
+              return false;
+            }
+          };
+          return true;
+        }
+
+        function reduce(array, callback, init) {
+          var acc = init;
+          for (var i in array) {
+            console.log(array[i]);
+            acc = callback(acc, array[i], i, array);
+          };
+          return acc;
+        }
+
+        function reduceRight(array, callback, init) {
+          var acc = init;
+          for (var i = array.length-1; i >= 0; i--) {
+            console.log(array[i]);
+            acc = callback(acc, array[i], i, array);
+           };
+          return acc;
+        }
+
+        // ниже какие-то проверочные функции
+
+        function ex(element) {
+          return element['drink'] === 'cider';
+        }
+
+        function reducer(acc, element, index, array) {
+          return acc += element['drink'];
+          console.log(element);
+        }
+
+      // console.log(includes(templateArray, 'beer', 1));
+      // console.log(lastIndexOf(templateArray, 'beer'));
+      // console.log(some(templateArray2, ex));
+      // console.log(every(templateArray2, function(element) {return element['day'].length > 4}));
+      // console.log(reduceRight(templateArray2, reducer, 'Yo!'));
 
     </script>
   </body>
