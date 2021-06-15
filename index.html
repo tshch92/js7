@@ -16,7 +16,7 @@
         ];
 
         function indexOf(array, value, from = 0) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if (i >= from && array[i] === value) {
               return i;
             }
@@ -34,7 +34,7 @@
         }
 
         function includes(array, value, from = 0) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if ((i >= from) && array[i] === value) {
               return true;
             }
@@ -43,7 +43,7 @@
         }
 
         function find(array, callback) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if (callback(array[i])) {
               return array[i];
             }
@@ -51,7 +51,7 @@
         }
 
         function findIndex(array, callback) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if (callback(array[i])) {
               return i;
             }
@@ -60,7 +60,7 @@
         }
 
         function some(array, callback) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if (callback(array[i])) {
               return true;
             }
@@ -69,7 +69,7 @@
         }
 
         function every(array, callback) {
-          for (var i in array) {
+          for (var i = 0; i < array.length; i++) {
             if (!callback(array[i])) {
               return false;
             }
@@ -79,8 +79,7 @@
 
         function reduce(array, callback, init) {
           var acc = init;
-          for (var i in array) {
-            console.log(array[i]);
+          for (var i = 0; i < array.length; i++) {
             acc = callback(acc, array[i], i, array);
           };
           return acc;
@@ -89,7 +88,6 @@
         function reduceRight(array, callback, init) {
           var acc = init;
           for (var i = array.length-1; i >= 0; i--) {
-            console.log(array[i]);
             acc = callback(acc, array[i], i, array);
            };
           return acc;
@@ -106,11 +104,11 @@
           console.log(element);
         }
 
-      // console.log(includes(templateArray, 'beer', 1));
-      // console.log(lastIndexOf(templateArray, 'beer'));
-      // console.log(some(templateArray2, ex));
-      // console.log(every(templateArray2, function(element) {return element['day'].length > 4}));
-      // console.log(reduceRight(templateArray2, reducer, 'Yo!'));
+      console.log(includes(templateArray, 'beer', 1));
+      console.log(lastIndexOf(templateArray, 'beer'));
+      console.log(some(templateArray2, ex));
+      console.log(every(templateArray2, function(element) {return element['day'].length > 6}));
+      console.log(reduceRight(templateArray2, reducer, 'Yo!'));
 
     </script>
   </body>
